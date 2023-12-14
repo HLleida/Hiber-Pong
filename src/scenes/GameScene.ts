@@ -9,7 +9,7 @@ export default class Game extends Phaser.Scene {
     private scoreLeft: number = 0;
     private scoreRight: number = 0;
     private scoreText!: Phaser.GameObjects.Text;
-    private ballSpeed: number = 200; // Velocidad constante para la pelota
+    private ballSpeed: number = 200; 
     private gameOver: boolean = false;
 
     constructor() {
@@ -32,7 +32,7 @@ export default class Game extends Phaser.Scene {
         }).setOrigin(0.5);
         this.ball = this.physics.add.sprite(this.scale.width / 2, this.scale.height / 2, 'ball');
         this.ball.setBounce(1, 1);
-        this.ball.setCollideWorldBounds(true); // Fix: Use setCollideWorldBounds instead of accessing the read-only property
+        this.ball.setCollideWorldBounds(true); 
         this.ball.setVelocity(this.ballSpeed, this.ballSpeed);
 
 
@@ -49,7 +49,6 @@ export default class Game extends Phaser.Scene {
             { fontSize: '32px', color: '#fff' }
         ).setOrigin(0.5, 0.5);
 
-        // Asegúrate de que la pelota no rebote en los bordes izquierdo y derecho
         this.physics.world.setBoundsCollision(false, false, true, true);
 
 
@@ -57,13 +56,12 @@ export default class Game extends Phaser.Scene {
 
     update() {
         if (this.gameOver) {
-            return; // Detiene la actualización si el juego ha terminado
+            return; 
         }
 
         this.handlePlayerInput();
         this.controlCPUPaddle();
 
-         // Verifica si la pelota pasa por los bordes laterales para anotar puntos
          if (this.ball.x < 0 || this.ball.x > this.scale.width) {
             if (this.ball.x < 0) {
                 this.scoreRight++;
@@ -73,7 +71,6 @@ export default class Game extends Phaser.Scene {
             this.scoreText.setText(`Score: ${this.scoreLeft} - ${this.scoreRight}`);
             this.resetBall();
 
-            // Comprueba si alguno de los jugadores ha ganado
             if (this.scoreLeft === 6 || this.scoreRight === 6) {
                 this.endGame();
             }
@@ -119,10 +116,8 @@ export default class Game extends Phaser.Scene {
     }
 
     private resetBall() {
-        // Determina desde qué lado se lanzará la pelota
         let launchFromLeft = this.scoreRight > this.scoreLeft;
     
-        // Coloca la pelota al lado de la pala del jugador que va a recibir
         if (launchFromLeft) {
             this.ball.setPosition(this.paddleLeft.x + 50, this.scale.height / 2);
             this.ball.setVelocity(this.ballSpeed, Phaser.Math.Between(-this.ballSpeed, this.ballSpeed));
@@ -136,8 +131,7 @@ export default class Game extends Phaser.Scene {
         let winner = this.scoreLeft === 6 ? 'Player' : 'CPU';
         this.add.text(this.scale.width / 2, this.scale.height / 2, `${winner} Wins!`, { fontSize: '40px', color: '#fff' }).setOrigin(0.5, 0.5);
         this.gameOver = true;
-
-        //reiniciar el juego después de un tiempo
+        
         this.time.delayedCall(5000, () => {
             this.scene.restart();
         });
