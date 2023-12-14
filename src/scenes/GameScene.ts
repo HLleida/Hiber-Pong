@@ -1,7 +1,6 @@
-
 import * as Phaser from 'phaser';
-
-type ArcadePhysicsCallback = (ball: Phaser.Physics.Arcade.Sprite, paddle: Phaser.Physics.Arcade.Sprite) => void;
+import ballGame from '../../assets/ball.png';
+import paddleGame from '../../assets/paddle.png';
 
 export default class Game extends Phaser.Scene {
     private ball!: Phaser.Physics.Arcade.Sprite;
@@ -18,8 +17,8 @@ export default class Game extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('ball', 'assets/ball.png');
-        this.load.image('paddle', 'assets/paddle.png');
+        this.load.image('ball', ballGame);
+        this.load.image('paddle', paddleGame);
     }
 
     create() {
