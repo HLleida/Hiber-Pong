@@ -19,16 +19,20 @@ Es neceario tener [Node.js](https://nodejs.org/es/) instalado en el sistema, que
 
 2. **Instala las dependecias**
 
+    ```bash
     nmp install
 
 3. **Ejecución del juego en local**
-
+ 
+    ```bash
     npm run dev
 
 4. **Compilar para producción**
 
+    ```bash
     npm run build
 
- **Licencia**
- Este proyecto está bajo la licencia MIT.
+**Licencia**
+
+        Este proyecto está bajo la licencia MIT.
 
