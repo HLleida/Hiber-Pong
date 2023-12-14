@@ -34,5 +34,5 @@ Es neceario tener [Node.js](https://nodejs.org/es/) instalado en el sistema, que
 
 **Licencia**
 
-        Este proyecto está bajo la licencia MIT.
+Este proyecto está bajo la licencia MIT.
 
